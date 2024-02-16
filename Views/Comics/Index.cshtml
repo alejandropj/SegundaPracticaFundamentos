@@ -1,0 +1,49 @@
+﻿@model List<Comic>
+
+<h1>Comics</h1>
+
+
+<a asp-controller="Comics"
+       asp-action="CreateLAMBDA">
+        Crear Comic LAMBDA
+    </a><br />
+    <a asp-controller="Comics"
+       asp-action="CreatePROCEDURE">
+        Crear Comic PROCEDURE
+    </a><br />
+<a asp-controller="Comics"
+       asp-action="Details">
+        Detalles de Comic
+    </a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Comic comic in Model)
+        {
+
+            <tr>
+                <td>@comic.Nombre</td>
+                <td><img src="@comic.Imagen" style="width:150px;height:150px" /></td>
+                <td>@comic.Descripcion</td>
+                <td>
+                    <a asp-controller="Comics" asp-action="Delete"
+                       asp-route-idcomic="@comic.IdComic"
+                       class="btn btn-danger">
+                        Eliminar
+                    </a><a asp-controller="Comics" asp-action="Update"
+                           asp-route-idcomic="@comic.IdComic"
+                           class="btn btn-warning">
+                        Actualizar
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>

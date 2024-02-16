@@ -1,0 +1,12 @@
+﻿@Model Comic
+@{
+    List<string> comics = ViewData["COMICS"] as List<string>;
+}
+<h1>Selecciona un comic</h1>
+<select class="form-select">
+    @foreach (string comic in comics)
+        {
+        <option value="comic">comic</option>
+        }
+</select>
+

@@ -1,0 +1,11 @@
+﻿@model Comic
+<h1>¿Eliminar Comic @Model.Nombre ?</h1>
+
+<form method="post">
+    <button class="btn btn-danger">
+        Aceptar
+    </button>
+    <a asp-controller="Comics" asp-action="Index" class="btn btn-primary">
+        Cancelar
+    </a>
+</form>
