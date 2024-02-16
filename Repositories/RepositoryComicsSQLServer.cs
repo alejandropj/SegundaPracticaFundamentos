@@ -89,7 +89,14 @@ namespace SegundaPracticaFundamentos.Repositories
 
         public void DeleteComic(int idcomic)
         {
-            throw new NotImplementedException();
+            string sql = "delete from COMICS where IDCOMIC=@idcomic";
+            this.com.Parameters.AddWithValue("@idcomic", idcomic);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            int af = this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
         }
 
         public List<string> GetAllComicsString()

@@ -50,19 +50,17 @@ namespace SegundaPracticaFundamentos.Controllers
             Comic comic = this.repo.GetComic(idComic);
             return View(comic);
         }        
-        public IActionResult Delete()
-        {
-            List<Comic> comics = this.repo.GetComics();
-            ViewData["COMICS"] = comics;
-            return View();
-        }
-        [HttpPost]
         public IActionResult Delete(int idComic)
         {
-            List<Comic> comics = this.repo.GetComics();
-            ViewData["COMICS"] = comics;
             Comic comic = this.repo.GetComic(idComic);
+            
             return View(comic);
+        }
+        [HttpPost]
+        public IActionResult Delete(Comic comic)
+        {
+            this.repo.DeleteComic(comic.IdComic);
+            return RedirectToAction("Index");
         }
     }
 }
