@@ -94,12 +94,30 @@ namespace SegundaPracticaFundamentos.Repositories
 
         public List<string> GetAllComicsString()
         {
-            throw new NotImplementedException();
+            var consulta = from datos in this.tabla.AsEnumerable()
+                           select datos;
+            List<string> comics = new List<string>();
+            foreach (var row in consulta)
+            {
+                comics.Add(row.Field<string>("NOMBRE"));
+            }
+            return comics;
         }
 
         public Comic GetComic(int idcomic)
         {
-            throw new NotImplementedException();
+            var consulta = from datos in this.tabla.AsEnumerable()
+                           where datos.Field<int>("IDCOMIC") == idcomic
+                           select datos;
+            var row = consulta.First();
+            Comic comic = new Comic
+            {
+                IdComic = row.Field<int>("IDCOMIC"),
+                Nombre = row.Field<string>("NOMBRE"),
+                Imagen = row.Field<string>("IMAGEN"),
+                Descripcion = row.Field<string>("DESCRIPCION")
+            };
+            return comic;
         }
 
         

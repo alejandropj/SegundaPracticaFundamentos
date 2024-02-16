@@ -36,5 +36,33 @@ namespace SegundaPracticaFundamentos.Controllers
             this.repo.InsertComicProcedure(comic);
             return RedirectToAction("Index");
         }
+        public IActionResult Details()
+        {
+            List<Comic> comics = this.repo.GetComics();
+            ViewData["COMICS"] = comics;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Details(int idComic)
+        {
+            List<Comic> comics = this.repo.GetComics();
+            ViewData["COMICS"] = comics;
+            Comic comic = this.repo.GetComic(idComic);
+            return View(comic);
+        }        
+        public IActionResult Delete()
+        {
+            List<Comic> comics = this.repo.GetComics();
+            ViewData["COMICS"] = comics;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Delete(int idComic)
+        {
+            List<Comic> comics = this.repo.GetComics();
+            ViewData["COMICS"] = comics;
+            Comic comic = this.repo.GetComic(idComic);
+            return View(comic);
+        }
     }
 }
